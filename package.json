@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "moyu-cli":"index.js"
+    "moyu-cli": "index.js"
   },
   "author": "",
   "license": "ISC",
