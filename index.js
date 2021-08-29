@@ -7,8 +7,11 @@ let options = {
     target:"exec",
     duration:100,
     mode:"bar",
-    repeat:1
+    repeat:1,
+    focus:false
 };
+
+
 
 let getOptions = function(){
     let tStr;
@@ -35,7 +38,11 @@ let getOptions = function(){
             case "--mode":
                 if(i+1>=argv.length) break;
                 tStr = argv[i+1];
-                options["duration"] = Number(tStr) || 300;
+                options["mode"] = tStr;
+                break;
+            case "-f":
+            case "--focus":
+                options["focus"] = true;
                 break;
             default:
                 break;

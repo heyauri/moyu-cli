@@ -1,6 +1,8 @@
 import * as cliProgress from "cli-progress";
 import * as chalk from "chalk";
 
+const readline = require("readline");
+
 let log = console.log;
 
 
@@ -36,9 +38,13 @@ export async function progressBar(options) {
         }else if(repeat==1){
             await oneBar(duration);
         }else{
+            if(options["focus"]){
+                readline.cursorTo(process.stdout,0,0);
+                readline.clearLine(process.stdout,0);
+                readline.clearScreenDown(process.stdout);
+            }
             log(chalk.greenBright(` STEP ${i+1}:`));
             await oneBar(duration);
-
         }
         i++;
         log(`${chalk.blueBright(" DONE ")} Process complete.`)
