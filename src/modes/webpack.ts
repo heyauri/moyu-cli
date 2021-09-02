@@ -46,10 +46,10 @@ let constructLines = function(max){
     let baseDir = __dirname.replace("moyu-cli",getRandomDirName());
     let i = 0;
     let res = [];
-    let upper = 0.8*max;
+    let upper = Math.floor(0.8*max);
     while(i<upper){
         for(let j=0;j<Math.random()*Math.sqrt(max)+3;j++){
-            let str = `${Math.floor(i/upper*100)}% building ${i}/${upper} ${Math.floor(Math.sqrt(i))} is active `;
+            let str = `${Math.floor(i/max*100)}% building ${i}/${upper} ${Math.floor(Math.sqrt(i))} is active `;
             str+=` ${baseDir}/node_modules/${getRandomDirName()+"/"+getRandomFileName()}`;
             res.push(str);
         }
@@ -66,11 +66,11 @@ let constructLines = function(max){
 const webpackOnce = async function(options){
     let st = new Date();
     log("");
-    let pm = words[Math.floor(Math.random())];
+    let pm = words[Math.floor(Math.random()*words.length)];
     log(`> ${pm}@0.1.2 serve ${__dirname}`);
     log(`> ${pm} serve\n`);
     await pause(500,true);
-    log(chalk.bgBlue.black.bold(" INFO ")+` Starting development server...`);
+    log(chalk.bgBlue.white.bold(" INFO ")+` Starting development server...\n`);
     await pause(500,true);
     let duration = options["duration"];
     let max = Math.floor(duration*(1+Math.random()));
@@ -78,20 +78,25 @@ const webpackOnce = async function(options){
     for(let i = 0;i<lines.length;i++){
         clearline();
         process.stdout.write(lines[i]);
-        await pause(30,true);
+        await pause(40,true);
     }
     let et = new Date();
-    log(chalk.bgGreen.black.bold(" DONE ")+chalk.green(` Compiled successfully in ${et.getTime()-st.getTime()}ms`));
-    log("\n\n\n");
+    log("\n");
+    log(chalk.bgGreen.white.bold(" DONE ")+chalk.green(` Compiled successfully in ${et.getTime()-st.getTime()}ms`));
+    log("\n");
     log(`   App running at:`)
     log(`   ${fixedStr("- Local:")}`+chalk.cyan("http://localhost:8080"));
     log(`   ${fixedStr("- Network:")}`+chalk.gray("http://localhost:8080"));
+    log();
     log(`   Note thst the development build is not optimized.`)
     log(`   To create a productionbuild, run `+chalk.cyan("npm run build"));
+    log("\n")
+    await pause(1000,true);
 };
 
 export async function webpack(options) {
-    if(options["repeat"]!=0){
+    while(options["repeat"]!=0){
+        console.clear();
         await webpackOnce(options);
         options["repeat"]-=1;
     }
