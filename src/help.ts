@@ -17,8 +17,9 @@ export function logHelpMsg(){
     log(`    ${fixedStr("-r, --repeat")} ${fixedStr("set the repeat rounds of the program, while it is set to -1, the program will keep running until a terminal signal is sent, i.e. Ctrl + c.")}`);
 
     // Modes
-    log("  Modes:");
+    log("\n  Modes:");
     log(`    ${fixedStr("sp, singleProgressbar")} ${fixedStr(" Mode: Single progress bar ")}`);
+    log(`    ${fixedStr("webpack")} ${fixedStr(" Mode: webpack-serve like infos ")}`);
     // log(`    ${fixedStr("mp / multiProgressbar")} ${fixedStr(" Mode: Multi-progress bar ")}`);
 
 }

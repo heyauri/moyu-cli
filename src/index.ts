@@ -1,4 +1,5 @@
-import {progressBar} from "./progress";
+import {progressBar} from "./modes/progress";
+import {webpack} from "./modes/webpack";
 import {logHelpMsg} from "./help";
 
 const findMode = function(inStr){
@@ -6,6 +7,8 @@ const findMode = function(inStr){
         case "sp":
         case "singleProgressBar":
             return progressBar;
+        case "webpack":
+            return webpack;
         default:
             return false;
     }
@@ -21,6 +24,7 @@ export function moyu(options) {
         console.log("Mode configuration is not valid");
         logHelpMsg();
     }else {
+        console.clear();
         prog(options);
     }
 }

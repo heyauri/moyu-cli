@@ -37,8 +37,7 @@ let getOptions = function(){
             case "-m":
             case "--mode":
                 if(i+1>=argv.length) break;
-                tStr = argv[i+1];
-                options["mode"] = tStr;
+                options["mode"] = argv[i+1];
                 break;
             case "-f":
             case "--focus":
