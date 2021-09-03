@@ -15,6 +15,10 @@ let options = {
 
 let getOptions = function(){
     let tStr;
+    if(argv.length ===2 ){
+        options["target"]="help";
+        return;
+    }
     for (let i = 2; i<argv.length;i++){
         let c = argv[i];
         switch (c) {

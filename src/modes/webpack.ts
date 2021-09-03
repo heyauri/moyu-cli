@@ -42,8 +42,10 @@ let getRandomFileName = function(){
     return arr.join("/")+"."+exts[Math.floor(Math.random()*exts.length)];
 };
 
+let fakeBaseDir = __dirname.split(path.sep).map(i=>{return words[Math.floor(Math.random()*words.length)]}).join(path.sep);
+  
 let constructLines = function(max){
-    let baseDir = __dirname.replace("moyu-cli",getRandomDirName());
+    let baseDir = fakeBaseDir;
     let i = 0;
     let res = [];
     let upper = Math.floor(0.8*max);
@@ -67,7 +69,7 @@ const webpackOnce = async function(options){
     let st = new Date();
     log("");
     let pm = words[Math.floor(Math.random()*words.length)];
-    log(`> ${pm}@0.1.2 serve ${__dirname}`);
+    log(`> ${pm}@0.1.2 serve ${fakeBaseDir}`);
     log(`> ${pm} serve\n`);
     await pause(500,true);
     log(chalk.bgBlue.white.bold(" INFO ")+` Starting development server...\n`);
