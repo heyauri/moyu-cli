@@ -19,7 +19,7 @@ export function logHelpMsg(){
     // Modes
     log("\n  Modes:");
     log(`    ${fixedStr("sp, singleProgressbar")} ${fixedStr("Mode: Single progress bar ")}`);
-    log(`    ${fixedStr("webpack")} ${fixedStr("Mode: webpack-serve like infos ")}`);
+    log(`    ${fixedStr("webpack")} ${fixedStr("Mode: output a fake, webpack-serve like info-stream ")}`);
     // log(`    ${fixedStr("mp / multiProgressbar")} ${fixedStr(" Mode: Multi-progress bar ")}`);
 
 }
