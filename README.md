@@ -19,8 +19,9 @@ usage: moyu-cli [options] <command>
     -r, --repeat               set the repeat rounds of the program, while it is set to -1, the program will keep running until a terminal signal is sent, i.e. Ctrl + c.
 
   Modes:
-    sp, singleProgressbar      Mode: Single progress bar 
-    webpack                    Mode: output a fake, webpack-serve like info-stream 
+    sp, singleProgressbar      Mode: Single progress bar
+    webpack                    Mode: output a fake, webpack-serve like info-stream
+    download                   Mode: output a fake, file-download like info-stream
 
 ```
 
