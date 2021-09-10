@@ -56,11 +56,13 @@ async function downloadOnce(options) {
         addBar(options, multibar, bars, lens, vals);
     }
     const speedData = [];
+    let skipArr = [];
     // 20ms update rate
     while (true) {
         let j = 0;
         let tmpLen = len;
         for (let i = 0; i < tmpLen; i++) {
+            if(skipArr.indexOf(i)>-1) continue;
             // increment value
             if (vals[i] >= bars[i].getTotal()) {
                 // stop timer
@@ -70,6 +72,7 @@ async function downloadOnce(options) {
                     addBar(options, multibar, bars, lens, vals);
                     j++;
                 }
+                skipArr.push(i);
                 continue;
             }
             vals[i]++;
