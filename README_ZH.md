@@ -1,5 +1,5 @@
 # moyu-cli
-A npm package used for moyu, a meaningful activity which is also named as touch-fish.
+一个用来摸鱼的npm包, 通过让屏幕上不停闪过特定的信息流来假装电脑在处理一些复杂计算， 从而让使用者手中亮起来的手机屏幕看起来不那么刺眼
 
 ## Installation
 ```javascript

@@ -1,9 +1,10 @@
-import {clearline,pause,fixedStr} from "../utils";
+import {clearline,pause,fixedStr,words} from "../utils";
 import * as cliProgress from "cli-progress";
 import * as chalk from "chalk";
 let log = console.log;
 const fs = require("fs");
 const path = require("path");
+const readline = require("readline");
 
 
 let dirPackages = fs.readdirSync(path.join(__dirname,"../../node_modules"));
@@ -13,9 +14,6 @@ for(let dir of dirPackages){
         dirWords[w]=1;
     });
 }
-let words = Object.keys(dirWords);
-let ws = fs.readFileSync(path.join(__dirname,"../../assets/ws")).toString();
-words=words.concat(ws.split("\n"));
 
 let getRandomDirName = function(){
     let rnd = 1+Math.floor(Math.random()*4);
@@ -31,11 +29,11 @@ let getRandomDirName = function(){
 
 let exts = ["html","css","ts","json","js"];
 let getRandomFileName = function(){
-    let rnd = 1+Math.floor(Math.random()*3);
+    let rnd = 2+Math.floor(Math.random()*2);
     let arr = [];
     while (rnd>0){
         let rw = words[Math.floor(Math.random()*words.length)];
-        if(arr.indexOf(rw)>-1) continue;
+        if(arr.indexOf(rw)>-1||rw.length==0) continue;
         arr.push(rw);
         rnd--;
     }
@@ -52,7 +50,7 @@ let constructLines = function(max){
     while(i<upper){
         for(let j=0;j<Math.random()*Math.sqrt(max)+3;j++){
             let str = `${Math.floor(i/max*100)}% building ${i}/${upper} ${Math.floor(Math.sqrt(i))} is active `;
-            str+=` ${baseDir}/node_modules/${getRandomDirName()+"/"+getRandomFileName()}`;
+            str+=` ${path.join(baseDir,"node_modules",getRandomDirName())+"/"+getRandomFileName()}`;
             res.push(str);
         }
         i++;
@@ -75,11 +73,12 @@ const webpackOnce = async function(options){
     log(chalk.bgBlue.white.bold(" INFO ")+` Starting development server...\n`);
     await pause(500,true);
     let duration = options["duration"];
-    let max = Math.floor(duration*(1+Math.random()));
+    let max = Math.floor(duration*(1+Math.random()*2));
     let lines = constructLines(max);
     for(let i = 0;i<lines.length;i++){
         clearline();
         process.stdout.write(lines[i]);
+        readline.cursorTo(process.stdout, lines[i].length);
         await pause(40,true);
     }
     let et = new Date();
