@@ -35,6 +35,12 @@ for(let w of tmp){
     words.push(w);
 }
 
+export function getFakeBaseDir(){
+    let arr = __dirname.split(path.sep);
+    if(arr.length>5) arr = arr.slice(0,5);
+    return arr.map(i=>{return words[Math.floor(Math.random()*words.length)]}).join(path.sep);
+}
+
 
 export function clearline() {
     readline.cursorTo(process.stdout, 0);

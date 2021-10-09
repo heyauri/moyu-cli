@@ -22,8 +22,6 @@ let getRandomFileName = function () {
     return arr.join("-") + "." + exts[Math.floor(Math.random() * exts.length)];
 };
 
-let fakeBaseDir = __dirname.split(path.sep).map(i => { return words[Math.floor(Math.random() * words.length)] }).join(path.sep);
-
 function addBar(options, multibar, bars, lens, vals) {
     let l = Math.floor(Math.random() * options["duration"]/2)+10;
     bars.push(multibar.create(l, 0));

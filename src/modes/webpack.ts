@@ -1,4 +1,4 @@
-import {clearline,pause,fixedStr,words} from "../utils";
+import {clearline,pause,fixedStr,words,getFakeBaseDir} from "../utils";
 import * as cliProgress from "cli-progress";
 import * as chalk from "chalk";
 let log = console.log;
@@ -40,7 +40,7 @@ let getRandomFileName = function(){
     return arr.join("/")+"."+exts[Math.floor(Math.random()*exts.length)];
 };
 
-let fakeBaseDir = __dirname.split(path.sep).map(i=>{return words[Math.floor(Math.random()*words.length)]}).join(path.sep);
+let fakeBaseDir = getFakeBaseDir();
   
 let constructLines = function(max){
     let baseDir = fakeBaseDir;
