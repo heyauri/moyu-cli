@@ -36,7 +36,7 @@ function addBar(options, multibar, bars, lens, vals) {
 
 async function downloadOnce(options) {
     log("");
-    log(chalk.bgBlue.white(" INFO ") + `  FILES ARE DOWN LOADING...\n`)
+    log(chalk.bgBlue.white(" INFO ") + `  FILES ARE DOWNLOADING...\n`)
     const multibar = new cliProgress.MultiBar({
         clearOnComplete: false,
         hideCursor: true,

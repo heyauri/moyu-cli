@@ -37,7 +37,7 @@ let getRandomFileName = function(){
         arr.push(rw);
         rnd--;
     }
-    return arr.join("/")+"."+exts[Math.floor(Math.random()*exts.length)];
+    return arr.join(path.sep)+"."+exts[Math.floor(Math.random()*exts.length)];
 };
 
 let fakeBaseDir = getFakeBaseDir();
@@ -50,7 +50,7 @@ let constructLines = function(max){
     while(i<upper){
         for(let j=0;j<Math.random()*Math.sqrt(max)+3;j++){
             let str = `${Math.floor(i/max*100)}% building ${i}/${upper} ${Math.floor(Math.sqrt(i))} is active `;
-            str+=` ${path.join(baseDir,"node_modules",getRandomDirName())+"/"+getRandomFileName()}`;
+            str+=` ${path.join(baseDir,"node_modules",getRandomDirName())+path.sep+getRandomFileName()}`;
             res.push(str);
         }
         i++;
